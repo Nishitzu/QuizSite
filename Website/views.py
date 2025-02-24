@@ -62,7 +62,7 @@ def home():
                 record["forecast"] = dataRecord['icon'] #Per evitare la localizzione in inglese, prendo direttamente la designazione come icona
                 record["dayTemp"] = dataRecord['temperatureMax'] #La temperatura massima è la diurna
                 record["nightTemp"] = dataRecord['temperatureMin'] #La temperatura minima è la notturna
-                record["humidity"] = dataRecord['humidity'] * 100 #discrimination variable, for testing purposes
+                record["humidity"] = round((dataRecord['humidity'] * 100), 2) #discrimination variable, for testing purposes
 
                 recordlist.append(record)
                 i += 1
