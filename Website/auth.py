@@ -51,7 +51,6 @@ def login():
         user = User.query.filter_by(email = email).first() #using another query method to showcase different approaches
         if user:
             if check_password_hash(user.password, passwd):
-                flash("Login avvenuto con successo!", category='success')
                 login_user(user, remember=True) #remembers user log in until the user clears cache or webserver restars
                 return redirect(url_for('views.home'))
             else:
@@ -99,7 +98,6 @@ def sign_up():
                 #session.rollback()
             #db.session.commit()
 
-            flash("Account creato con succcesso!", category='success')
             checkDict["insertUser"] = False
             login_user(new_user, remember=True)
             return redirect(url_for('views.home'))
