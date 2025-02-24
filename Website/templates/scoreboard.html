@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Quiz Mania Tech{% endblock %}
+{% block heading %}{% endblock %}
+{% block username %} {{ username }} {% endblock %}
+{% block pagecontent%}
+
+<div class="row">
+    <div class="col-md-12 text-center col d-flex justify-content-center" style="">
+        <!-- Score Recap -->
+        <div class="card" style="width: 26rem;">
+            <div class="card-header bg-primary text-white">
+                <strong>I nostri giocatori: </strong>
+            </div>
+            {% for record in tableScore %}
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong> {{ record["username"] }} </strong> &#8208; {{ record["score"] }}</li>
+              </ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

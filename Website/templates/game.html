@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %}Quiz Mania Tech{% endblock %}
+{% block heading %}Quiz{% endblock %}
+{% block username %} {{ username }} {% endblock %}
+{% block pagecontent%}
+<!-- <form name="check" method="post" id="check">
+    <input type="hidden" id="checkForm" value="CheckForm" name="chekForm">
+     <button class="btn btn-outline-primary btn-lg" type="submit">
+            Submit
+        </button>
+</form> -->
+
+<div class="row">
+    <div class="col-md-12 text-right">
+        <div class="btn btn-primary" style="pointer-events: None;">
+            Score:
+            <span class="badge badge-light">{{ currentScore }}</span>
+        </div>
+    </div>
+</div>
+<form name="quizAnswers" method="post" id="quizAnswers">
+<div class="row mt-2">
+    <div class="col-md-12">
+            <!-- INIT CAROUSEL -->
+            <div id="quizCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% for question in questions %}
+                    <!-- Carousel Item Start -->
+                        {% if question.id == firstActive %}
+                            <div class="carousel-item active">
+                        {% else %}
+                            <div class="carousel-item">
+                        {% endif %}
+                            <!-- Card Start -->
+                            <div class="card">
+                                <h5 class="card-header bg-primary text-white">
+                                    <strong>
+                                        {{ question.question }}
+                                    </strong>
+                                </h5>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- Questions STARTO-->
+                                            <fieldset id="{{ question.id }}">
+                                                <input type="hidden" id="questionId" name="questionId" value="{{ question.id }}">
+                                                <div class="form-check">
+                                                    {% set form_id1 = question.id ~ 'option1' %}
+                                                    <!--<input class="form-check-input" type="radio" name="{{ form_id1 }}"
+                                                           id="{{ form_id1 }}" value="1">-->
+                                                    <input class="form-check-input" type="radio" name="{{ question.id }}"
+                                                           id="{{ form_id1 }}" value="1">
+                                                    <label class="form-check-label" for="{{ form_id1 }}">
+                                                        {{ question.optionOne}}
+                                                    </label>
+                                                    <input type="hidden" id="formId1" name="formId1" value="{{ form_id1 }}">
+                                                </div>
+                                                <div class="form-check">
+                                                    {% set form_id2 = question.id ~ 'option2' %}
+                                                    <!--<input class="form-check-input" type="radio" name="{{ form_id2 }}"
+                                                           id="{{ form_id2 }}" value="2">-->
+                                                     <input class="form-check-input" type="radio" name="{{ question.id }}"
+                                                           id="{{ form_id2 }}" value="2">
+                                                    <label class="form-check-label" for="{{ form_id2 }}">
+                                                        {{ question.optionTwo}}
+                                                    </label>
+                                                    <input type="hidden" id="formId2" name="formId2" value="{{ form_id2 }}">
+                                                </div>
+                                                <div class="form-check">
+                                                    {% set form_id3 = question.id ~ 'option3' %}
+                                                    <!--<input class="form-check-input" type="radio" name="{{ form_id3 }}"
+                                                           id="{{ form_id3 }}" value="3">-->
+                                                    <input class="form-check-input" type="radio" name="{{ question.id }}"
+                                                           id="{{ form_id3 }}" value="3">
+                                                    <label class="form-check-label" for="{{ form_id3 }}">
+                                                        {{ question.optionThree}}
+                                                    </label>
+                                                    <input type="hidden" id="formId3" name="formId3" value="{{ form_id3 }}">
+                                                </div>
+                                                <div class="form-check">
+                                                    {% set form_id4 = question.id ~ 'option4' %}
+                                                    <!-- <input class="form-check-input" type="radio" name="{{ form_id4 }}"
+                                                           id="{{ form_id4 }}" value="4"> -->
+                                                    <input class="form-check-input" type="radio" name="{{ question.id }}"
+                                                           id="{{ form_id4 }}" value="4">
+                                                    <label class="form-check-label" for="{{ form_id4 }}">
+                                                        {{ question.optionFour}}
+                                                    </label>
+                                                    <input type="hidden" id="formId4" name="formId4" value="{{ form_id4 }}">
+                                                </div>
+                                            </fieldset>
+                                            <!-- Questions ENDO-->
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row mt-2">
+                                        <div class="col-md-6">
+                                            <button class="btn btn-primary" type="button"
+                                                    data-target="#quizCarousel"
+                                                    data-slide="prev">
+                                                Precedente
+                                            </button>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <button class="btn btn-primary" type="button"
+                                                    data-target="#quizCarousel"
+                                                    data-slide="next">
+                                                Successivo
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card End -->
+                        </div>
+                        <!-- Carousel Item End -->
+                    {% endfor %}
+                    </div>
+                </div>
+                <!-- END CAROUSEL -->
+    </div>
+</div>
+<hr>
+<div class="row mt-4">
+    <div class="col-md-12 text-center">
+        <button class="btn btn-outline-primary btn-lg" type="submit">
+            Submit
+        </button>
+    </div>
+</div>
+</form>
+{% endblock %}

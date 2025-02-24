@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Quiz Mania Tech{% endblock %}
+{% block heading %}Home Page{% endblock %}
+{% block username %} {{ username }} {% endblock %}
+{% block pagecontent%}
+<div class="row">
+    <div class="col-md-4" style="float:none; margin:0 auto;">
+        <!-- Widget Search -->
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control small" placeholder="Inserisci Città"
+                       aria-label="Search" aria-describedby="basic-addon2" name="cityName">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% if recordList is not none and infoList is not none %}
+<div class="row mt-3">
+    <div class="col-md-12 text-center">
+        <h5 class="text-primary"><strong>{{ infoList[0] }} </strong></h5>
+        {% set todayDate = infoList[2] ~ ' - ' ~ infoList[1] %}
+        <h5 class="text-primary"><strong>{{ todayDate }}</strong></h5>
+    </div>
+</div>
+<div class="row mt-4">
+    {% for record in recordList %}
+    <div class="col-md-4">
+        <div class="card" style="width: 25rem;">
+            <div class="card-header bg-primary text-white">
+                <strong>{{ record["day"] }}</strong>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 text-center mb-3">
+                            {% set img_path = 'style/img/weathericons/' ~ record["forecast"] ~ '.png' %}
+                           <img src="{{ url_for('static', filename=img_path) }}" width="150">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong> Temp Diurna: </strong> {{ record["dayTemp"] }} &#x2103;
+                            </li>
+                            <li class="list-group-item">
+                                <strong> Temp Notturna: </strong> {{ record["nightTemp"] }} &#x2103;
+                            </li>
+                            <li class="list-group-item">
+                                <strong> Umidità: </strong> {{ record["humidity"] }} %
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

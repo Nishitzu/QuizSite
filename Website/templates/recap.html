@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Quiz Mania Tech{% endblock %}
+{% block heading %}Riassunto della Sessione di Gioco!{% endblock %}
+{% block username %} {{ username }} {% endblock %}
+{% block pagecontent%}
+
+<div class="row">
+    <div class="col-md-12 text-center col d-flex justify-content-center" style="">
+        <!-- Score Recap -->
+        <div class="card" style="width: 26rem;">
+            <div class="card-header bg-primary text-white">
+                <strong> I tuoi risultati! </strong>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong> Punteggio Precedente: </strong> {{ request.args.get("previousScore") }}</li>
+                <li class="list-group-item"><strong> Risposte corrette: </strong> {{  request.args.get("correctGiven")  }} </li>
+                <li class="list-group-item"><strong> Punteggio di questa Sessione: </strong> {{  request.args.get("sessionScore")  }}</li>
+                <li class="list-group-item"><strong> Punteggio finale: </strong> {{  request.args.get("newScore")  }}</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
