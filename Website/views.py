@@ -58,7 +58,7 @@ def home():
                     else:
                         record["day"] = utilityDays[dayvalue - 1]
                 else:
-                    record["day"] = utilityDays[weekday]
+                    record["day"] = utilityDays[weekday + i]
                 record["forecast"] = dataRecord['icon'] #Per evitare la localizzione in inglese, prendo direttamente la designazione come icona
                 record["dayTemp"] = dataRecord['temperatureMax'] #La temperatura massima è la diurna
                 record["nightTemp"] = dataRecord['temperatureMin'] #La temperatura minima è la notturna
